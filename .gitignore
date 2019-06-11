@@ -1,0 +1,5 @@
+*.pyc
+*.log
+machine_dependent_settings.py
+*.hf5
+*~
