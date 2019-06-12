@@ -28,6 +28,7 @@ Assuming you have installed Python, Pip, Tensorflow/CUDA/CuDNN from correctly fr
 Clone the Air Learning Project
 
 ```$ git clone --recursive https://github.com/harvard-edge/airlearning.git```
+
 ```$ cd airlearning/airlearning-rl```
 
 Lets call the directory where airlearning is cloned as <AIRLEARNING_ROOT>
@@ -38,5 +39,6 @@ You need to point to the directory where Unreal Project files are installed. Ple
 Here is a sample machine_dependent_settings.py file. Please use this as a template and point to the location where you have installed the airlearning-ue4 project
 
 ``` $ cd <AIRLEARNING_ROOT>/airlearning-rl/settings_folder/```
+
 ``` $ vim machine_dependent_settings.py```
 
