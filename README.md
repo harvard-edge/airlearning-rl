@@ -15,7 +15,7 @@ The following instructions were tested on Windows 10, Ubuntu 16.04 WSL (Windows 
 
 P.S: For Ubuntu users, we have tested this on Ubuntu 16.04, 18.04, Ubuntu Mate platforms. The instructions are the same as below with one caveat:-You need two machines. The first machine will render the [Air Learning Environment Generator](https://github.com/harvard-edge/airlearning-ue4/tree/b4f27ea457936609745ddad1191ab8c54f8799ac). This portion is currently tested on Windows 10 machine (We will port it to Ubuntu soon). The second machine will be used to train the reinforcment learning algorithm. This second machine can be Windows 10 or Ubuntu. 
 
-On the other hand, if you have a Windows 10 machine, you can run both rendering and RL training on a single machine. So are providing instruction to install the RL training on Windows 10 here.
+On the other hand, if you have a Windows 10 machine, you can run both rendering and RL training on a single machine. So we are providing instruction to install the RL training on Windows 10 here.
 
 ## Installation Instruction
 
@@ -36,9 +36,25 @@ Lets call the directory where airlearning is cloned as <AIRLEARNING_ROOT>
 
 You need to point to the directory where Unreal Project files are installed. Please install them before you follow the instructions below.The instructions for installing Air Learning Environment Generator is [here](https://github.com/harvard-edge/airlearning-ue4/tree/b4f27ea457936609745ddad1191ab8c54f8799ac). 
 
-Here is a sample machine_dependent_settings.py file. Please use this as a template and point to the location where you have installed the airlearning-ue4 project
-
-``` $ cd <AIRLEARNING_ROOT>/airlearning-rl/settings_folder/```
+``` $ cd <AIRLEARNING_ROOT>\airlearning-rl\settings_folder\```
 
 ``` $ vim machine_dependent_settings.py```
+
+Here is a sample machine_dependent_settings.py file. Please use this as a template and point to the location where you have installed the airlearning-ue4 project.
+
+```
+json_file_addr = "<AIRLEARNING_ROOT>\Content\JsonFiles\EnvGenConfig
+game_file = "<AIRLEARNING_ROOT>\airlearning-ue4\AirLearning.uproject"
+unreal_host_shared_dir = ""
+unreal_exe_path = "C:\\Program Files\\Epic Games\\UE_4.18\\Engine\\Binaries\\Win64\\UE4Editor.exe"
+```
+
+### Step 4: Train
+
+Run the training 
+
+``` $ cd <AIRLEARNING_ROOT>\airlearning-rl\runtime\collect_data.py```
+
+This should start the AirLearning game mode and start the training
+
 
