@@ -53,7 +53,10 @@ unreal_exe_path = "C:\\Program Files\\Epic Games\\UE_4.18\\Engine\\Binaries\\Win
 
 Run the training 
 
-``` $ cd <AIRLEARNING_ROOT>\airlearning-rl\runtime\collect_data.py```
+``` 
+$ cd <AIRLEARNING_ROOT>\airlearning-rl\runtime\
+$ python collect_data.py
+```
 
 This should start the AirLearning game mode and start the training
 
