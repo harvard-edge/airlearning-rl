@@ -5,6 +5,7 @@ os.sys.path.insert(0, os.path.abspath('../settings_folder'))
 import settings
 import ddpg_airsim
 import dqn_airsim
+import dqn_baselines
 import ppo_airsim
 #import sac_airsim
 from game_handler_class import *
@@ -15,8 +16,10 @@ from utils import *
 
 def runTask(task):
     # decide on the algorithm
+    # DQN-B is the stable-baselines version of DQN
+    # DQN is the Keras-RL version of DQN
     if ("algo" in task.keys()):
-        if (task["algo"] in ["DDPG", "DQN", "PPO", "SAC"]):
+        if (task["algo"] in ["DDPG", "DQN", "PPO", "SAC", "DQN-B"]):
             if (task["algo"] == "DDPG"):
                 msgs.algo = "DDPG"
                 train_class = ddpg_airsim
@@ -26,6 +29,9 @@ def runTask(task):
             elif (task["algo"] == "DQN"):
                 train_class = dqn_airsim
                 msgs.algo = "DQN"
+            elif (task["algo"] == "DQN-B"):
+                train_class = dqn_baselines
+                msgs.algo = "DQN-B"
             elif (task["algo"] == "SAC"):
                 train_class = sac_airsim
         else:
@@ -40,6 +46,9 @@ def runTask(task):
         train_obj, env = train_class.setup(env_name=task["env_name"], \
                                            difficulty_level=task["difficulty_level"])
         if (task["algo"] == "DQN"):
+            train_class.train(train_obj, env)
+
+        if(task["algo"] == "DQN-B"):
             train_class.train(train_obj, env)
 
         if (task["algo"] == "PPO"):
@@ -81,10 +90,10 @@ def main():
     taskList = []
     model_weights_list_to_test = ["C:/workspace/airlearning-rl/data/PPO/zone0/0.hf5"]
 
-    task1 = {"task_type": "start_game"}
-    task2 = {"algo": "DQN", "task_type": "train", "difficulty_level": "easy", "env_name": "AirSimEnv-v42",
+    #task1 = {"task_type": "start_game"}
+    task2 = {"algo": "DQN-B", "task_type": "train", "difficulty_level": "easy", "env_name": "AirSimEnv-v42",
              "weights": model_weights_list_to_test}
-    taskList.append(task1)
+    #taskList.append(task1)
     taskList.append(task2)
 
     for task_el in taskList:

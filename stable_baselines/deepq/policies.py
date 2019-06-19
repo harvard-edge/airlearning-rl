@@ -1,9 +1,19 @@
-import tensorflow as tf
 import tensorflow.contrib.layers as tf_layers
 import numpy as np
 from gym.spaces import Discrete
 
 from stable_baselines.common.policies import BasePolicy, nature_cnn, register_policy
+import os
+os.sys.path.insert(0, os.path.abspath('../../settings_folder'))
+import settings
+import gym
+import tensorflow as tf
+import numpy as np
+
+from stable_baselines.common.policies import FeedForwardPolicy, ActorCriticPolicy, register_policy, nature_cnn
+from stable_baselines.a2c.utils import conv_grey, linear, conv_to_fc, batch_to_seq, seq_to_batch, lstm
+from stable_baselines.common.vec_env import DummyVecEnv
+from stable_baselines import A2C
 
 
 class DQNPolicy(BasePolicy):
@@ -65,6 +75,61 @@ class DQNPolicy(BasePolicy):
         """
         raise NotImplementedError
 
+class MultiInputPolicy(DQNPolicy):
+    def __init__(self, sess, ob_space, ac_space, n_env, n_steps, n_batch, reuse=False, **kwargs):
+        super(MultiInputPolicy, self).__init__(sess, ob_space, ac_space, n_env, n_steps, n_batch, reuse=reuse, scale=False)
+
+        with tf.variable_scope("model", reuse=False):
+
+            #input = tf.placeholder(shape=self.processed_obs.shape,dtype=self.processed_obs.dtype )
+
+            depth = self.processed_obs[n_batch:, :, :(settings.encoded_depth_H * settings.encoded_depth_W)]
+            pos = self.processed_obs[n_batch:, :, (settings.encoded_depth_H * settings.encoded_depth_W):]
+
+            if(n_batch == None):
+                depth = tf.reshape(depth, shape=(-1, settings.encoded_depth_H, settings.encoded_depth_W, 1))
+                pos = tf.reshape(pos, shape=(-1,1,settings.position_depth))
+            else:
+                depth = tf.reshape(depth, shape=(n_batch, settings.encoded_depth_H, settings.encoded_depth_W, 1))
+                pos = tf.reshape(pos, shape=(n_batch, 1, settings.position_depth))
+
+            # Convolutions on Depth Images
+            activ = tf.nn.relu
+            layer_1 = activ(conv_grey(depth, 'c1', n_filters=32, filter_size=4, stride=4, init_scale=np.sqrt(2)))
+            layer_2 = activ(conv_grey(layer_1, 'c2', n_filters=64, filter_size=4, stride=2, init_scale=np.sqrt(2)))
+            layer_3 = activ(conv_grey(layer_2, 'c3', n_filters=128, filter_size=2, stride=1, init_scale=np.sqrt(2)))
+            layer_4 = activ(conv_grey(layer_3, 'c4', n_filters=64, filter_size=1, stride=1, init_scale=np.sqrt(2)))
+            layer_5 = conv_to_fc(layer_4)
+
+            image_encoded = tf.keras.layers.Flatten()(layer_5)
+            image_encoded = tf.reshape(image_encoded, shape=(-1, 1, 32640))
+            # Fully connected layers for pos vector
+            joint_encoding = tf.keras.layers.concatenate([image_encoded, pos])
+            x = tf.keras.layers.Dense(256, activation="relu", name='pi_fc_0')(joint_encoding)
+            x1 = tf.keras.layers.Dense(256, activation="relu", name='pi_fc_1')(x)
+            x2 = tf.keras.layers.Dense(256, activation="relu", name='pi_fc_2')(x1)
+            n_action = ac_space.n
+            action_scores = tf.keras.layers.Dense(n_action, activation="relu", name='pi_fc_3')(x2)
+
+        self.q_values = action_scores
+        self.initial_state = None
+        self._setup_init()
+
+
+    def step(self, obs, state=None, mask=None, deterministic=False):
+        if deterministic:
+            action, value, neglogp = self.sess.run([self.deterministic_action, self._value, self.neglogp],
+                                                   {self.obs_ph: obs})
+        else:
+            action, value, neglogp = self.sess.run([self.action, self._value, self.neglogp],
+                                                   {self.obs_ph: obs})
+        return action, value, self.initial_state, neglogp
+
+    def proba_step(self, obs, state=None, mask=None):
+        return self.sess.run(self.policy_proba, {self.obs_ph: obs})
+
+    def value(self, obs, state=None, mask=None):
+        return self.sess.run(self._value, {self.obs_ph: obs})
 
 class FeedForwardPolicy(DQNPolicy):
     """

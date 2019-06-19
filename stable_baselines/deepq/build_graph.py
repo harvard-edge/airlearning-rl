@@ -144,7 +144,7 @@ def build_act(q_func, ob_space, ac_space, stochastic_ph, update_eps_ph, sess):
 
     batch_size = tf.shape(policy.obs_ph)[0]
     n_actions = ac_space.nvec if isinstance(ac_space, MultiDiscrete) else ac_space.n
-    random_actions = tf.random_uniform(tf.stack([batch_size]), minval=0, maxval=n_actions, dtype=tf.int64)
+    random_actions = tf.random_uniform(tf.stack([batch_size]),minval=0, maxval=n_actions, dtype=tf.int64)
     chose_random = tf.random_uniform(tf.stack([batch_size]), minval=0, maxval=1, dtype=tf.float32) < eps
     stochastic_actions = tf.where(chose_random, random_actions, deterministic_actions)
 
