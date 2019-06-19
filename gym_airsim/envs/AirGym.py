@@ -193,11 +193,12 @@ class AirSimEnv(gym.Env):
 
     def state(self):
         if(msgs.algo == "DDPG"):
-            return self.depth, self.grey, self.velocity, self.position
             return self.depth
         elif(msgs.algo == "PPO"):
             return self.concat_state
         elif(msgs.algo == "SAC"):
+            return self.concat_state
+        elif(msgs.algo == "DQN-B"):
             return self.concat_state
         else:
             return self.depth, self.velocity, self.position
