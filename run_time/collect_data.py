@@ -90,10 +90,10 @@ def main():
     taskList = []
     model_weights_list_to_test = ["C:/workspace/airlearning-rl/data/PPO/zone0/0.hf5"]
 
-    #task1 = {"task_type": "start_game"}
+    task1 = {"task_type": "start_game"}
     task2 = {"algo": "DQN-B", "task_type": "train", "difficulty_level": "easy", "env_name": "AirSimEnv-v42",
              "weights": model_weights_list_to_test}
-    #taskList.append(task1)
+    taskList.append(task1)
     taskList.append(task2)
 
     for task_el in taskList:

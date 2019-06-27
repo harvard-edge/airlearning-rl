@@ -184,7 +184,8 @@ class AirSimEnv(gym.Env):
         self.game_config_handler.populate_zones()
         self.sampleGameConfig()
         self.goal = utils.airsimize_coordinates(self.game_config_handler.get_cur_item("End"))
-        self.airgym.unreal_reset()
+        if(os.name=="nt"):
+            self.airgym.unreal_reset()
         time.sleep(5)
 
     def getGoal(self): #there is no setting for the goal, cause you set goal
@@ -422,7 +423,8 @@ class AirSimEnv(gym.Env):
 
     def on_episode_end(self):
         self.update_success_rate()
-        msgs.meta_data = {**self.game_config_handler.cur_game_config.get_all_items()}
+        if(os.name=="nt"):
+            msgs.meta_data = {**self.game_config_handler.cur_game_config.get_all_items()}
         self.populate_episodal_log_dic()
 
         if(msgs.algo == "DDPG"):
@@ -455,6 +457,7 @@ class AirSimEnv(gym.Env):
     def _step(self, action):
         msgs.success = False 
         msgs.meta_data = {}
+
         try:
             print("ENter Step"+str(self.stepN))
             self.addToLog('action', action)
@@ -600,9 +603,10 @@ class AirSimEnv(gym.Env):
             print("enter reset")
             self.randomize_env()
             print("done randomizing")
-            connection_established = self.airgym.unreal_reset()
-            if not connection_established:
-                raise Exception
+            if(os.name=="nt"):
+                connection_established = self.airgym.unreal_reset()
+                if not connection_established:
+                    raise Exception
             print("done unreal_resetting")
             time.sleep(2)
             self.airgym.AirSim_reset()
@@ -612,6 +616,7 @@ class AirSimEnv(gym.Env):
             state = self.state()
             self.prev_state = state
             return state
+
         except Exception as e:
             print("------------------------- reset failed ----------------  with"\
                     , e , " error")
