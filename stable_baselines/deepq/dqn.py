@@ -1,3 +1,4 @@
+import os
 from functools import partial
 
 import tensorflow as tf
@@ -306,6 +307,12 @@ class DQN(OffPolicyRLModel):
 
         return actions_proba
 
+    def save_graph(self, dir, name):
+        with self.graph.as_default():
+            saver = tf.train.Saver()
+            tf.train.write_graph(self.sess.graph_def, dir, name +'.pb')
+            saver.save(self.sess, dir + '/' +name + '.ckpt')
+
     def save(self, save_path):
         # params
         data = {
@@ -337,6 +344,10 @@ class DQN(OffPolicyRLModel):
         params = self.sess.run(self.params)
 
         self._save_to_file(save_path, data=data, params=params)
+        dir = os.path.dirname(os.path.abspath(save_path))
+        file = os.path.basename(save_path)
+        file_name = os.path.splitext(file)[0]
+        self.save_graph(dir, file_name)
 
     @classmethod
     def load(cls, load_path, env=None, **kwargs):

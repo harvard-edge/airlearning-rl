@@ -172,6 +172,8 @@ class CheckPoint():
 				return join(dir_path,settings.chk_p_name_style_baselines)
 			elif(msgs.algo == "SAC"):
 				return join(dir_path, settings.chk_p_name_style_baselines)
+			elif(msgs.algo == "DQN-B"):
+				return join(dir_path, settings.chk_p_name_style_baselines)
 			else:
 				return join(dir_path, settings.chk_p_name_style)
 		if len(file_path_list) < self.max_chck_pt_per_zone:

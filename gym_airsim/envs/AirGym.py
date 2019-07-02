@@ -305,6 +305,25 @@ class AirSimEnv(gym.Env):
                 exit(0)
         else:
             return
+    def dqn_baselines_call_back_emulator(self):
+            if (msgs.mode == 'train'):
+                append_log_file(self.episodeN, "verbose")
+                append_log_file(self.episodeN, "")
+                if not(msgs.success):
+                    return
+                weight_file_name = self.check_point.find_file_to_check_point(msgs.cur_zone_number)
+                self.model.save(weight_file_name)
+                with open(weight_file_name+"_meta_data", "w") as file_hndle:
+                    json.dump(msgs.meta_data, file_hndle)
+            elif (msgs.mode == 'test'):
+                append_log_file(self.episodeN, "verbose")
+                append_log_file(self.episodeN, "")
+                with open(msgs.weight_file_under_test+"_test"+str(msgs.tst_inst_ctr) + "_meta_data", "w") as file_hndle:
+                    json.dump(msgs.meta_data, file_hndle)
+                    json.dump(msgs.meta_data, file_hndle)
+            else:
+                print("this mode " + str(msgs.mode) + "is not defined. only train and test defined")
+                exit(0)
 
     def update_success_rate(self):
         self.success_ratio_within_window = float(self.success_count_within_window/settings.update_zone_window)
@@ -433,6 +452,8 @@ class AirSimEnv(gym.Env):
             self.ppo_call_back_emulator()
         elif(msgs.algo == "SAC"):
             self.sac_call_back_emulator()
+        elif(msgs.algo == "DQN-B"):
+            self.dqn_baselines_call_back_emulator()
 
         self.restart_window_if_necessary()
         self.update_zone_if_necessary()
@@ -541,7 +562,7 @@ class AirSimEnv(gym.Env):
             else:
                 reward, distance = self.computeReward(now)
                 done = False
-                self.success = False
+                self.success = True
 
             #Todo: penalize for more crazy and unstable actions
 
