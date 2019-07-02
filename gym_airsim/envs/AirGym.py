@@ -562,7 +562,7 @@ class AirSimEnv(gym.Env):
             else:
                 reward, distance = self.computeReward(now)
                 done = False
-                self.success = True
+                self.success = False
 
             #Todo: penalize for more crazy and unstable actions
 
