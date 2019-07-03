@@ -42,6 +42,7 @@ unreal_exec = mds.unreal_exe_path
 chk_p_name_style = "0.hf5"  # the checkpoint obj will create a file with this style
 chk_p_name_style_baselines = "0.pkl"
 max_chck_pt_per_zone = 5  # pay attention
+native_tf_format = False
 
 logging_interval = 100
 checkpoint_interval = 50000

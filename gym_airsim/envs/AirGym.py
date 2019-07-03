@@ -564,6 +564,7 @@ class AirSimEnv(gym.Env):
                 done = False
                 self.success = False
 
+
             #Todo: penalize for more crazy and unstable actions
 
             self.allLogs['distance'] = [float(distance)]

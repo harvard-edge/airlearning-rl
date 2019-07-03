@@ -1,6 +1,7 @@
 import os
 from functools import partial
-
+os.sys.path.insert(0, os.path.abspath('../../settings_folder'))
+import settings
 import tensorflow as tf
 import numpy as np
 import gym
@@ -310,7 +311,7 @@ class DQN(OffPolicyRLModel):
     def save_graph(self, dir, name):
         with self.graph.as_default():
             saver = tf.train.Saver()
-            tf.train.write_graph(self.sess.graph_def, dir, name +'.pb')
+            tf.train.write_graph(self.sess.graph_def, dir, name +'.pb', as_text=False)
             saver.save(self.sess, dir + '/' +name + '.ckpt')
 
     def save(self, save_path):
@@ -343,11 +344,14 @@ class DQN(OffPolicyRLModel):
 
         params = self.sess.run(self.params)
 
+        if(settings.native_tf_format):
+            dir = os.path.dirname(os.path.abspath(save_path))
+            file = os.path.basename(save_path)
+            file_name = os.path.splitext(file)[0]
+            self.save_graph(dir, file_name)
+
         self._save_to_file(save_path, data=data, params=params)
-        dir = os.path.dirname(os.path.abspath(save_path))
-        file = os.path.basename(save_path)
-        file_name = os.path.splitext(file)[0]
-        self.save_graph(dir, file_name)
+
 
     @classmethod
     def load(cls, load_path, env=None, **kwargs):

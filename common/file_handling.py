@@ -19,7 +19,8 @@ def find_list_of_files(data_dir):
 	for f in listdir(data_dir):
 		file_path = join(data_dir, f)
 		if isfile(file_path) and not ("~" in f) and not (".gitignore" == f) and not ("meta_data" in f) and not (
-				"test_res" in f) and not ("actor" in f):
+				"test_res" in f) and not ("actor" in f) and not (".ckpt" in f) and not ("checkpoint" in f)\
+				and not (".pb" in f):
 			file_list.append(file_path)
 	return file_list
 
