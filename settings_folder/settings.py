@@ -42,7 +42,7 @@ unreal_exec = mds.unreal_exe_path
 chk_p_name_style = "0.hf5"  # the checkpoint obj will create a file with this style
 chk_p_name_style_baselines = "0.pkl"
 max_chck_pt_per_zone = 5  # pay attention
-native_tf_format = False
+native_tf_format = True
 
 logging_interval = 100
 checkpoint_interval = 50000
@@ -52,11 +52,11 @@ checkpoint_interval = 50000
 # ---------------------------
 # how many zones for each variable for the entire range. Note that frequency
 # of moving to a new zone is not determined here
-zone_dic = {"Seed": 1, "NumberOfDynamicObjects": 1, "MinimumDistance": 1, "VelocityRange": 1, "End": 4}  # pay attention
+zone_dic = {"Seed": 1, "NumberOfDynamicObjects": 1, "MinimumDistance": 1, "VelocityRange": 1, "End": 2}  # pay attention
 
 # update_zone_success_threshold = 50
-acceptable_success_rate_to_update_zone = .3  # after what ration of success up the zone # pay attention
-update_zone_window = 1000  # the window within which the  update_zone_accpetable_success_rate
+acceptable_success_rate_to_update_zone = .99  # after what ration of success up the zone # pay attention
+update_zone_window = 100  # the window within which the  update_zone_accpetable_success_rate
 # needs to be achieved. Note that at the begining of every
 # new window we zero out the achieved ratio
 
@@ -71,14 +71,14 @@ update_zone_window = 1000  # the window within which the  update_zone_accpetable
 default_range_dic = easy_range_dic = {"End": zone_dic["End"] * ["Mutable"],
                                       "MinimumDistance": [2],
                                       "EnvType": ["Indoor"],
-                                      "ArenaSize": [[50, 50, 20]],
+                                      "ArenaSize": [[30, 30, 10]],
                                       "PlayerStart": [[0, 0, 0]],
-                                      "NumberOfDynamicObjects": list(range(0, 1)),
+                                      "NumberOfDynamicObjects": list(range(0, 10)),
                                       "Walls1": [[255, 255, 10]],
                                       "Seed": list(range(0, 10000)),
                                       "VelocityRange": [[5, 25]],
                                       "Name": ["Name"],
-                                      "NumberOfObjects": list(range(0, 1))}
+                                      "NumberOfObjects": list(range(0, 5))}
 
 medium_range_dic = {"End": zone_dic["End"] * ["Mutable"],
                     "MinimumDistance": [2],
@@ -158,6 +158,13 @@ epsilon = 1
 # ---------------------------
 # DQN parameters
 # ---------------------------
+use_history = True    # if true previous states are fed to network
+CNN_time_samples = 4    # amount of total samples fed to the net
+SS_input_size = 5       # size of 1 state
+
+velocity_noise = True
+noise_std = 0.25
+
 double_dqn = False
 mv_fw_dur = 0.01875
 mv_fw_spd_1 = 1
@@ -201,7 +208,7 @@ training_steps_cap = 1000000
 nb_steps_warmup = 300
 episode_count_cap = 100000
 policy = "shallow"
-curriculum_learning = True
+curriculum_learning = False
 
 # ---------------------------
 # testing params
@@ -248,7 +255,7 @@ ue4_winY = 480
 #--------------------------------
 # Multi-Modal Input settings
 #--------------------------------
-concatenate_inputs = True
+concatenate_inputs = False
 encoded_depth = True
 position = True
 velocity = False

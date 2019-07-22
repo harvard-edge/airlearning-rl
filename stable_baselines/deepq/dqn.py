@@ -56,7 +56,7 @@ class DQN(OffPolicyRLModel):
                  learning_starts=1000, target_network_update_freq=500, prioritized_replay=False,
                  prioritized_replay_alpha=0.6, prioritized_replay_beta0=0.4, prioritized_replay_beta_iters=None,
                  prioritized_replay_eps=1e-6, param_noise=False, verbose=0, tensorboard_log=None,
-                 _init_setup_model=True, policy_kwargs=None, full_tensorboard_log=False):
+                 _init_setup_model=True, policy_kwargs=None, full_tensorboard_log=True):
 
         # TODO: replay_buffer refactoring
         super(DQN, self).__init__(policy=policy, env=env, replay_buffer=None, verbose=verbose, policy_base=DQNPolicy,
@@ -309,10 +309,30 @@ class DQN(OffPolicyRLModel):
         return actions_proba
 
     def save_graph(self, dir, name):
+
+        meta_path = dir + "\\" + name+'.ckpt.meta'
+        output_node_names = ["deepq/model/action_value/fully_connected_2/BiasAdd"]
+
+        ##save checkpoint
         with self.graph.as_default():
             saver = tf.train.Saver()
             tf.train.write_graph(self.sess.graph_def, dir, name +'.pb', as_text=False)
-            saver.save(self.sess, dir + '/' +name + '.ckpt')
+            saver.save(self.sess, dir + '\\' +name + '.ckpt')
+
+        ## load checkpoint and freeze graph
+        # with tf.Session() as sess:
+        #     saver = tf.train.import_meta_graph(meta_path)
+        #     saver.restore(sess,dir + '\\' +name + '.ckpt')
+        #     frozen_graph_def = tf.graph_util.convert_variables_to_constants(sess, sess.graph_def, output_node_names) 
+        #     with open(dir+"\\"+name+'frozen_graph.pb', 'wb') as f:
+        #         f.write(frozen_graph_def.SerializeToString())
+
+        # saver.restore()
+
+
+            # saver = tf.train.Saver()
+            # tf.train.write_graph(self.sess.graph_def, dir, name +'.pb')
+            # saver.save(self.sess, dir + '/' +name + '.ckpt')
 
     def save(self, save_path):
         # params
@@ -351,7 +371,11 @@ class DQN(OffPolicyRLModel):
             self.save_graph(dir, file_name)
 
         self._save_to_file(save_path, data=data, params=params)
-
+        
+        dir = os.path.dirname(os.path.abspath(save_path))	
+        file = os.path.basename(save_path)	
+        file_name = os.path.splitext(file)[0]	
+        self.save_graph(dir, file_name)
 
     @classmethod
     def load(cls, load_path, env=None, **kwargs):

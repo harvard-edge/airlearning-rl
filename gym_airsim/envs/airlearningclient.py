@@ -150,6 +150,40 @@ class AirLearningClient(airsim.MultirotorClient):
         # cv2.waitKey(0)
         #total = np.reshape(total, (154,256))
         return total
+        
+    def get_SS_state(self,goal):
+        ## -- laser ranger -- ##
+        lidarData = self.client.getLidarData(lidar_name="LidarSensor1",vehicle_name="Drone1")
+        points = np.array(lidarData.point_cloud, dtype=np.dtype('f4'))
+        points = np.reshape(points, (int(points.shape[0]/3), 3))
+        X = points[:,0]
+        Y = points[:,1]
+
+        upper_ind = np.where(Y>0)[0]
+        lower_ind = np.where(Y<0)[0]
+        left_ind = np.where(X<0)[0]
+        right_ind = np.where(X>0)[0]
+
+        laser_right_ind = right_ind[np.argmin(np.absolute(Y[right_ind]))]
+        laser_left_ind = left_ind[np.argmin(np.absolute(Y[left_ind]))]
+        laser_lower_ind = lower_ind[np.argmin(np.absolute(X[lower_ind]))]
+        laser_upper_ind = upper_ind[np.argmin(np.absolute(X[upper_ind]))]
+
+        output = np.absolute([Y[laser_upper_ind],X[laser_right_ind],Y[laser_lower_ind],X[laser_left_ind]])
+
+        ## -- get distance to goal
+        
+        now = self.client.getPosition()
+        xdistance = (goal[0] - now.x_val)
+        ydistance = (goal[1] - now.y_val)
+        euclidean = np.sqrt(np.power(xdistance,2) + np.power(ydistance,2))
+
+        # -- append distance to output array -- #
+        output = np.append(output,euclidean)
+        # print('OUTPUT',output)        
+        # print('SHAPE',np.shape(output))
+        return output   
+
 
     def drone_pos(self):
         x = self.client.getPosition().x_val
@@ -298,57 +332,78 @@ class AirLearningClient(airsim.MultirotorClient):
         duration = 0
         """
 
-        if action == 0:
-            start, duration = self.straight(settings.mv_fw_spd_5, settings.mv_fw_dur)
-        if action == 1:
-            start, duration = self.straight(settings.mv_fw_spd_4, settings.mv_fw_dur)
-        if action == 2:
-            start, duration = self.straight(settings.mv_fw_spd_3, settings.mv_fw_dur)
-        if action == 3:
-            start, duration = self.straight(settings.mv_fw_spd_2, settings.mv_fw_dur)
-        if action == 4:
-            start, duration = self.straight(settings.mv_fw_spd_1, settings.mv_fw_dur)
-        if action == 5:
-            start, duration = self.move_forward_Speed(settings.mv_fw_spd_5, settings.mv_fw_spd_5, settings.mv_fw_dur)
-        if action == 6:
-            start, duration = self.move_forward_Speed(settings.mv_fw_spd_4, settings.mv_fw_spd_4, settings.mv_fw_dur)
-        if action == 7:
-            start, duration = self.move_forward_Speed(settings.mv_fw_spd_3, settings.mv_fw_spd_3, settings.mv_fw_dur)
-        if action == 8:
-            start, duration = self.move_forward_Speed(settings.mv_fw_spd_2, settings.mv_fw_spd_2, settings.mv_fw_dur)
-        if action == 9:
-            start, duration = self.move_forward_Speed(settings.mv_fw_spd_1, settings.mv_fw_spd_1, settings.mv_fw_dur)
-        if action == 10:
-            start, duration = self.backup(settings.mv_fw_spd_5, settings.mv_fw_dur)
-        if action == 11:
-            start, duration = self.backup(settings.mv_fw_spd_4, settings.mv_fw_dur)
-        if action == 12:
-            start, duration = self.backup(settings.mv_fw_spd_3, settings.mv_fw_dur)
-        if action == 13:
-            start, duration = self.backup(settings.mv_fw_spd_2, settings.mv_fw_dur)
-        if action == 14:
-            start, duration = self.backup(settings.mv_fw_spd_1, settings.mv_fw_dur)
-        if action == 15:
-            start, duration = self.yaw_right(settings.yaw_rate_1_1, settings.rot_dur)
-        if action == 16:
-            start, duration = self.yaw_right(settings.yaw_rate_1_2, settings.rot_dur)
-        if action == 17:
-            start, duration = self.yaw_right(settings.yaw_rate_1_4, settings.rot_dur)
-        if action == 18:
-            start, duration = self.yaw_right(settings.yaw_rate_1_8, settings.rot_dur)
-        if action == 19:
-            start, duration = self.yaw_right(settings.yaw_rate_1_16, settings.rot_dur)
-        if action == 20:
-            start, duration = self.yaw_right(settings.yaw_rate_2_1, settings.rot_dur)
-        if action == 21:
-            start, duration = self.yaw_right(settings.yaw_rate_2_2, settings.rot_dur)
-        if action == 22:
-            start, duration = self.yaw_right(settings.yaw_rate_2_4, settings.rot_dur)
-        if action == 23:
-            start, duration = self.yaw_right(settings.yaw_rate_2_8, settings.rot_dur)
-        if action == 24:
-            start, duration = self.yaw_right(settings.yaw_rate_2_16, settings.rot_dur)
+        # if action == 0:
+        #     start, duration = self.straight(settings.mv_fw_spd_5, settings.mv_fw_dur)
+        # if action == 1:
+        #     start, duration = self.straight(settings.mv_fw_spd_4, settings.mv_fw_dur)
+        # if action == 2:
+        #     start, duration = self.straight(settings.mv_fw_spd_3, settings.mv_fw_dur)
+        # if action == 3:
+        #     start, duration = self.straight(settings.mv_fw_spd_2, settings.mv_fw_dur)
+        # if action == 4:
+        #     start, duration = self.straight(settings.mv_fw_spd_1, settings.mv_fw_dur)
+        # if action == 5:
+        #     start, duration = self.move_forward_Speed(settings.mv_fw_spd_5, settings.mv_fw_spd_5, settings.mv_fw_dur)
+        # if action == 6:
+        #     start, duration = self.move_forward_Speed(settings.mv_fw_spd_4, settings.mv_fw_spd_4, settings.mv_fw_dur)
+        # if action == 7:
+        #     start, duration = self.move_forward_Speed(settings.mv_fw_spd_3, settings.mv_fw_spd_3, settings.mv_fw_dur)
+        # if action == 8:
+        #     start, duration = self.move_forward_Speed(settings.mv_fw_spd_2, settings.mv_fw_spd_2, settings.mv_fw_dur)
+        # if action == 9:
+        #     start, duration = self.move_forward_Speed(settings.mv_fw_spd_1, settings.mv_fw_spd_1, settings.mv_fw_dur)
+        # if action == 10:
+        #     start, duration = self.backup(settings.mv_fw_spd_5, settings.mv_fw_dur)
+        # if action == 11:
+        #     start, duration = self.backup(settings.mv_fw_spd_4, settings.mv_fw_dur)
+        # if action == 12:
+        #     start, duration = self.backup(settings.mv_fw_spd_3, settings.mv_fw_dur)
+        # if action == 13:
+        #     start, duration = self.backup(settings.mv_fw_spd_2, settings.mv_fw_dur)
+        # if action == 14:
+        #     start, duration = self.backup(settings.mv_fw_spd_1, settings.mv_fw_dur)
+        # if action == 15:
+        #     start, duration = self.yaw_right(settings.yaw_rate_1_1, settings.rot_dur)
+        # if action == 16:
+        #     start, duration = self.yaw_right(settings.yaw_rate_1_2, settings.rot_dur)
+        # if action == 17:
+        #     start, duration = self.yaw_right(settings.yaw_rate_1_4, settings.rot_dur)
+        # if action == 18:
+        #     start, duration = self.yaw_right(settings.yaw_rate_1_8, settings.rot_dur)
+        # if action == 19:
+        #     start, duration = self.yaw_right(settings.yaw_rate_1_16, settings.rot_dur)
+        # if action == 20:
+        #     start, duration = self.yaw_right(settings.yaw_rate_2_1, settings.rot_dur)
+        # if action == 21:
+        #     start, duration = self.yaw_right(settings.yaw_rate_2_2, settings.rot_dur)
+        # if action == 22:
+        #     start, duration = self.yaw_right(settings.yaw_rate_2_4, settings.rot_dur)
+        # if action == 23:
+        #     start, duration = self.yaw_right(settings.yaw_rate_2_8, settings.rot_dur)
+        # if action == 24:
+        #     start, duration = self.yaw_right(settings.yaw_rate_2_16, settings.rot_dur)
+        if(settings.velocity_noise==False):
+            delta=0
+        else:
+            delta = np.random.normal(0,settings.noise_std)
+        
+        #print(delta)
 
+        # if action ==0:
+        #     start, duration = self.move_forward_Speed(settings.mv_fw_spd_3+delta,0,settings.mv_fw_dur)    #+x
+        # if action ==1:
+        #     start, duration = self.move_forward_Speed(-settings.mv_fw_spd_3+delta,0,settings.mv_fw_dur)   #-x
+        # if action ==2:
+        #     start, duration = self.move_forward_Speed(0,settings.mv_fw_spd_3+delta,settings.mv_fw_dur)    #+y
+        # if action ==3:
+        #     start, duration = self.move_forward_Speed(0,-settings.mv_fw_spd_3+delta,settings.mv_fw_dur)   #-y
+
+        if action == 0:
+            start, duration = self.straight(settings.mv_fw_spd_3, settings.mv_fw_dur)  # move forward
+        if action == 1:
+            start, duration = self.yaw_right(settings.yaw_rate_1_2, settings.rot_dur)  # yaw right
+        if action == 2:
+            start, duration = self.yaw_right(settings.yaw_rate_2_4, settings.rot_dur)  # yaw left
 
         collided = (self.client.getMultirotorState().trip_stats.collision_count > 0)
         #print("collided:", self.client.getCollisionInfo().has_collided," timestamp:" ,self.client.getCollisionInfo().time_stamp)

@@ -8,7 +8,7 @@ import settings
 import msgs
 from gym_airsim.envs.airlearningclient import *
 import callbacks
-from multi_modal_policy import MultiInputPolicy
+# from multi_modal_policy import MultiInputPolicy
 from stable_baselines.common.policies import MlpPolicy
 from stable_baselines.common.policies import CnnPolicy
 from stable_baselines.common.vec_env import DummyVecEnv

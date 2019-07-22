@@ -61,7 +61,7 @@ class AirSimEnv(gym.Env):
                 self.observation_space = spaces.Box(low=-100000, high=1000000,
                                                     shape=((1, STATE_POS + STATE_DEPTH_H * STATE_DEPTH_W)))
         else:
-            self.observation_space = spaces.Box(low=0, high=255, shape=(154, 256))
+            self.observation_space = spaces.Box(low=-100000, high=100000, shape=(settings.CNN_time_samples*settings.SS_input_size,))
             #self.observation_space = spaces.Box(low=0, high=255, shape=(144, 256, 3))
         '''
         self.observation_space = spaces.Dict({"rgb": spaces.Box(low = 0, high=255, shape=(144, 256, 3)),
@@ -99,6 +99,7 @@ class AirSimEnv(gym.Env):
         self.game_config_handler = GameConfigHandler()
         if(settings.concatenate_inputs):
             self.concat_state = np.zeros((1, 1, STATE_POS + STATE_DEPTH_H * STATE_DEPTH_W), dtype=np.uint8)
+        self.ss_state = np.zeros((settings.SS_input_size*settings.CNN_time_samples,)) #source-seeking, row-vector with all laser range values and and distance to source    
         self.depth = np.zeros((154, 256), dtype=np.uint8)
         self.rgb = np.zeros((154, 256, 3), dtype=np.uint8)
         self.grey = np.zeros((144, 256), dtype=np.uint8)
@@ -138,7 +139,7 @@ class AirSimEnv(gym.Env):
                                        np.array([+5.0, +5.0]),
                                        dtype=np.float32)
         else:
-            self.action_space = spaces.Discrete(25)
+            self.action_space = spaces.Discrete(3)
 
         self.goal = utils.airsimize_coordinates(self.game_config_handler.get_cur_item("End"))
         self.episodeN = 0
@@ -200,7 +201,7 @@ class AirSimEnv(gym.Env):
         elif(msgs.algo == "SAC"):
             return self.concat_state
         elif(msgs.algo == "DQN-B"):
-            return self.concat_state
+            return self.ss_state
         else:
             return self.depth, self.velocity, self.position
     
@@ -530,6 +531,13 @@ class AirSimEnv(gym.Env):
             self.rgb = self.airgym.getScreenRGB()
             self.position = self.airgym.get_distance(self.goal)
             self.velocity = self.airgym.drone_velocity()
+
+            if(settings.use_history==True):
+                self.ss_state[settings.SS_input_size:(settings.SS_input_size*settings.CNN_time_samples)] = self.ss_state[0:settings.SS_input_size*(settings.CNN_time_samples-1)]
+                self.ss_state[0:settings.SS_input_size] = self.airgym.get_SS_state(self.goal)
+            else:
+                self.ss_state = self.airgym.get_SS_state(self.goal)
+            print(self.ss_state)
             if(settings.profile):
                 clct_state_end = time.time()
                 self.clct_state_list.append(clct_state_end - clct_state_start)
@@ -609,6 +617,11 @@ class AirSimEnv(gym.Env):
         self.rgb = self.airgym.getScreenRGB()
         self.position = self.airgym.get_distance(self.goal)
         self.velocity = self.airgym.drone_velocity()
+        if(settings.use_history==True):
+            for i in range(settings.CNN_time_samples):
+                self.ss_state[(i*settings.SS_input_size):((i+1)*settings.SS_input_size)] = self.airgym.get_SS_state(self.goal)            
+        else:
+            self.ss_state = self.airgym.get_SS_state(self.goal)
         msgs.cur_zone_number = self.cur_zone_number_buff  #which delays the update for cur_zone_number
 
     def _reset(self):

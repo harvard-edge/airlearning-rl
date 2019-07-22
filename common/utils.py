@@ -46,7 +46,45 @@ def plot_data(file, data_to_inquire, mode="separate"):
     # santize_data(file)
     data = parse_data(file)
     for el in data_to_inquire:
-        plt.plot(data[el[0]], data[el[1]])
+        slice_interval = 1
+        x = data[el[0]]
+        y = data[el[1]]
+        length = np.shape(x)[0]
+        print(y)
+        if(el[1] == 'success'):
+            for i in range(length):
+                if(y[i] =='True'):
+                    y[i] = 1
+                else:
+                    y[i] = 0
+        
+        pass_arr = data['success']
+        if(el[1] == 'distance_traveled'):
+            x_loc = []
+            y_loc = []
+            for i in range(length):
+                if(pass_arr[i] == 1 or pass_arr[i]=='True'):
+                    x_loc = np.append(x_loc,x[i])
+                    y_loc = np.append(y_loc,y[i])
+            x = x_loc
+            y = y_loc
+        
+                
+        print(y)
+
+        x = x[0:(length-1):slice_interval]
+        y = y[0:(length-1):slice_interval]
+        def movingaverage (values, window):
+            weights = np.repeat(1.0, window)/window
+            sma = np.convolve(values, weights, 'valid')
+            return sma
+
+        y = movingaverage(y,100)
+        x = x[len(x)-len(y):]
+        ## slicing
+        # x = x[0:(length-1):slice_interval]
+        # y = y[0:(length-1):slice_interval]
+        plt.plot(x, y)
         plt.xlabel(el[0])
         plt.ylabel(el[1])
         assert (el[0] in data.keys())
