@@ -52,11 +52,11 @@ checkpoint_interval = 50000
 # ---------------------------
 # how many zones for each variable for the entire range. Note that frequency
 # of moving to a new zone is not determined here
-zone_dic = {"Seed": 1, "NumberOfDynamicObjects": 1, "MinimumDistance": 1, "VelocityRange": 1, "End": 2}  # pay attention
+zone_dic = {"Seed": 1, "NumberOfDynamicObjects": 1, "MinimumDistance": 1, "VelocityRange": 1, "End": 3}  # pay attention
 
 # update_zone_success_threshold = 50
-acceptable_success_rate_to_update_zone = .99  # after what ration of success up the zone # pay attention
-update_zone_window = 100  # the window within which the  update_zone_accpetable_success_rate
+acceptable_success_rate_to_update_zone = 0.3  # after what ration of success up the zone # pay attention
+update_zone_window = 1000  # the window within which the  update_zone_accpetable_success_rate
 # needs to be achieved. Note that at the begining of every
 # new window we zero out the achieved ratio
 
@@ -73,12 +73,12 @@ default_range_dic = easy_range_dic = {"End": zone_dic["End"] * ["Mutable"],
                                       "EnvType": ["Indoor"],
                                       "ArenaSize": [[30, 30, 10]],
                                       "PlayerStart": [[0, 0, 0]],
-                                      "NumberOfDynamicObjects": list(range(0, 10)),
+                                      "NumberOfDynamicObjects": list(range(0, 1)),
                                       "Walls1": [[255, 255, 10]],
                                       "Seed": list(range(0, 10000)),
                                       "VelocityRange": [[5, 25]],
                                       "Name": ["Name"],
-                                      "NumberOfObjects": list(range(0, 5))}
+                                      "NumberOfObjects": list(range(0, 15))}
 
 medium_range_dic = {"End": zone_dic["End"] * ["Mutable"],
                     "MinimumDistance": [2],
@@ -208,7 +208,7 @@ training_steps_cap = 1000000
 nb_steps_warmup = 300
 episode_count_cap = 100000
 policy = "shallow"
-curriculum_learning = False
+curriculum_learning = True
 
 # ---------------------------
 # testing params

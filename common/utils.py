@@ -63,7 +63,7 @@ def plot_data(file, data_to_inquire, mode="separate"):
             x_loc = []
             y_loc = []
             for i in range(length):
-                if(pass_arr[i] == 1 or pass_arr[i]=='True'):
+                if(pass_arr[i] == 1 or pass_arr[i]=='True' ):
                     x_loc = np.append(x_loc,x[i])
                     y_loc = np.append(y_loc,y[i])
             x = x_loc
@@ -84,7 +84,7 @@ def plot_data(file, data_to_inquire, mode="separate"):
         ## slicing
         # x = x[0:(length-1):slice_interval]
         # y = y[0:(length-1):slice_interval]
-        plt.plot(x, y)
+        plt.plot(range(len(y)), y)
         plt.xlabel(el[0])
         plt.ylabel(el[1])
         assert (el[0] in data.keys())
