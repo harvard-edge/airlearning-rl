@@ -158,7 +158,7 @@ class AirLearningClient(airsim.MultirotorClient):
         pars = np.array([398.96920648,  -2.58025025,   5.08711473])
 
         max_read = self.Gauss(0,*pars)
-        read = self.Gauss(dist,*pars)
+        read = self.Gauss(dist*3.28084,*pars)
         noise = np.random.normal(0,2)
         return((read+noise)/(max_read)*5)
 
@@ -411,11 +411,11 @@ class AirLearningClient(airsim.MultirotorClient):
         #     start, duration = self.move_forward_Speed(0,-settings.mv_fw_spd_3+delta,settings.mv_fw_dur)   #-y
 
         if action == 0:
-            start, duration = self.straight(settings.mv_fw_spd_3, settings.mv_fw_dur)  # move forward
+            start, duration = self.straight(0.5, 0.3)  # move forward
         if action == 1:
-            start, duration = self.yaw_right(settings.yaw_rate_1_2, settings.rot_dur)  # yaw right
+            start, duration = self.yaw_right(settings.yaw_rate_1_2, 0.3)  # yaw right
         if action == 2:
-            start, duration = self.yaw_right(settings.yaw_rate_2_4, settings.rot_dur)  # yaw left
+            start, duration = self.yaw_right(settings.yaw_rate_2_4, 0.3)  # yaw left
 
         collided = (self.client.getMultirotorState().trip_stats.collision_count > 0)
         #print("collided:", self.client.getCollisionInfo().has_collided," timestamp:" ,self.client.getCollisionInfo().time_stamp)

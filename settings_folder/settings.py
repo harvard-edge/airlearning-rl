@@ -52,10 +52,10 @@ checkpoint_interval = 50000
 # ---------------------------
 # how many zones for each variable for the entire range. Note that frequency
 # of moving to a new zone is not determined here
-zone_dic = {"Seed": 1, "NumberOfDynamicObjects": 1, "MinimumDistance": 1, "VelocityRange": 1, "End": 1}  # pay attention
+zone_dic = {"Seed": 1, "NumberOfDynamicObjects": 1, "MinimumDistance": 1, "VelocityRange": 1, "End": 3}  # pay attention
 
 # update_zone_success_threshold = 50
-acceptable_success_rate_to_update_zone = 0.3  # after what ration of success up the zone # pay attention
+acceptable_success_rate_to_update_zone = 0.5  # after what ration of success up the zone # pay attention
 update_zone_window = 1000  # the window within which the  update_zone_accpetable_success_rate
 # needs to be achieved. Note that at the begining of every
 # new window we zero out the achieved ratio
@@ -71,14 +71,14 @@ update_zone_window = 1000  # the window within which the  update_zone_accpetable
 default_range_dic = easy_range_dic = {"End": zone_dic["End"] * ["Mutable"],
                                       "MinimumDistance": [2],
                                       "EnvType": ["Indoor"],
-                                      "ArenaSize": [[19, 19, 10]],
+                                      "ArenaSize": [[10, 10, 20]],
                                       "PlayerStart": [[0, 0, 0]],
                                       "NumberOfDynamicObjects": list(range(0, 1)),
                                       "Walls1": [[255, 255, 10]],
                                       "Seed": list(range(0, 10000)),
                                       "VelocityRange": [[5, 25]],
                                       "Name": ["Name"],
-                                      "NumberOfObjects": list(range(0, 5))}
+                                      "NumberOfObjects": list(range(0, 2))}
 
 medium_range_dic = {"End": zone_dic["End"] * ["Mutable"],
                     "MinimumDistance": [2],
@@ -122,7 +122,7 @@ max_zone = zone_dic["End"]  # should be equal to mutable or total number of zone
 end_randomization_mode = "inclusive"  # whether each level of difficulty should be inclusive (including the previous level) or exclusive
 
 # how frequently to update the environment this is based on epides
-environment_change_frequency = {"Seed": 1, "NumberOfObjects": 10, "End": 1}
+environment_change_frequency = {"Seed": 1, "NumberOfObjects": 50, "End": 100}
 
 # ------------------------------------------------------------
 #                               -Drone related-
@@ -200,7 +200,7 @@ list_algo = ["DQN", "DDPG"]  # a new algo needs to be added to this list for bac
 nb_max_episodes_steps = 750  # pay attention
 # assert(nb_max_episodes_steps > 16 )
 success_distance_to_goal = 1
-slow_down_activation_distance = 2 * success_distance_to_goal  # detrmines at which distant we will punish the higher velocities
+slow_down_activation_distance = 1 * success_distance_to_goal  # detrmines at which distant we will punish the higher velocities
 # ---------------------------
 # training params
 # ---------------------------
