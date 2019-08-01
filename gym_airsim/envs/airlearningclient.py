@@ -151,6 +151,18 @@ class AirLearningClient(airsim.MultirotorClient):
         #total = np.reshape(total, (154,256))
         return total
         
+    def Gauss(self,x, a, x0, sigma):
+        return a * np.exp(-(x - x0)**2 / (2 * sigma**2))
+
+    def get_senor_read(self,dist):
+        pars = np.array([398.96920648,  -2.58025025,   5.08711473])
+
+        max_read = self.Gauss(0,*pars)
+        read = self.Gauss(dist,*pars)
+        noise = np.random.normal(0,2)
+        return((read+noise)/(max_read)*5)
+
+
     def get_SS_state(self,goal):
         ## -- laser ranger -- ##
         lidarData = self.client.getLidarData(lidar_name="LidarSensor1",vehicle_name="Drone1")
@@ -177,9 +189,9 @@ class AirLearningClient(airsim.MultirotorClient):
         xdistance = (goal[0] - now.x_val)
         ydistance = (goal[1] - now.y_val)
         euclidean = np.sqrt(np.power(xdistance,2) + np.power(ydistance,2))
-
+        sensor_read = self.get_senor_read(euclidean)
         # -- append distance to output array -- #
-        output = np.append(output,euclidean)
+        output = np.append(output,sensor_read)
         # print('OUTPUT',output)        
         # print('SHAPE',np.shape(output))
         return output   
