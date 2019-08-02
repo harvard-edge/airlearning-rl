@@ -78,7 +78,7 @@ default_range_dic = easy_range_dic = {"End": zone_dic["End"] * ["Mutable"],
                                       "Seed": list(range(0, 10000)),
                                       "VelocityRange": [[5, 25]],
                                       "Name": ["Name"],
-                                      "NumberOfObjects": list(range(0, 2))}
+                                      "NumberOfObjects": list(range(0, 1))}
 
 medium_range_dic = {"End": zone_dic["End"] * ["Mutable"],
                     "MinimumDistance": [2],
