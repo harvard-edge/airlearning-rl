@@ -122,7 +122,7 @@ max_zone = zone_dic["End"]  # should be equal to mutable or total number of zone
 end_randomization_mode = "inclusive"  # whether each level of difficulty should be inclusive (including the previous level) or exclusive
 
 # how frequently to update the environment this is based on epides
-environment_change_frequency = {"Seed": 1, "NumberOfObjects": 50, "End": 100}
+environment_change_frequency = {"Seed": 1, "NumberOfObjects": 50, "End": 1}
 
 # ------------------------------------------------------------
 #                               -Drone related-
