@@ -1,6 +1,7 @@
 import os
 
 os.sys.path.insert(0, os.path.abspath('../settings_folder'))
+os.sys.path.insert(0, os.path.abspath('../quantized'))
 
 import settings
 # import ddpg_airsim
@@ -12,7 +13,7 @@ from game_handler_class import *
 import msgs
 import file_handling
 from utils import *
-
+from run_quant_exp import *
 
 def runTask(task):
     # decide on the algorithm
@@ -85,22 +86,28 @@ def runTask(task):
         data_file = os.path.join(settings.proj_root_path, "data", task["algo"], task["data_file"])
         plot_data(data_file, task["data_to_plot"], task["plot_data_mode"])
 
+    if task["task_type"] == "test_quantized":
+        run_exp()
+        
+        
+
 
 def main():
     taskList = []
     model_weights_list_to_test = ["C:/Users/bpdui/Documents/airlearning_public/airlearning/airlearning-rl/data/DQN-B/zone0/0.pkl"]
 
-    # task1 = {"task_type": "start_game"}
-    # task2 = {"algo": "DQN-B", "task_type": "train", "difficulty_level": "easy", "env_name": "AirSimEnv-v42",
-    # "weights": model_weights_list_to_test}
+    task1 = {"task_type": "start_game"}
+    # task2 = {"task_type": "test_quantized","difficulty_level": "easy", "env_name": "AirSimEnv-v42"}
+    task2 = {"algo": "DQN-B", "task_type": "test", "difficulty_level": "easy", "env_name": "AirSimEnv-v42",
+    "weights": model_weights_list_to_test}
             #  "weights": model_weights_list_to_test}
-    task1 = {"task_type": "plot_data", "algo": "DQN-B", "data_file": "train_episodal_log_2.txt","plot_data_mode": "separate",  \
-            "data_to_plot":  [('episodeNInZone',"success" ), ('episodeNInZone',"distance_traveled")]\
-           }
+    # task1 = {"task_type": "plot_data", "algo": "DQN-B", "data_file": "train_episodal_log_2.txt","plot_data_mode": "separate",  \
+    #         "data_to_plot":  [('episodeNInZone',"success" ), ('episodeNInZone',"distance_traveled")]\
+    #        }
 
 
     taskList.append(task1)
-    # taskList.append(task2)
+    taskList.append(task2)
 
     for task_el in taskList:
         runTask(task_el)

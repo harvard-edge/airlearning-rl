@@ -77,7 +77,7 @@ def plot_data(file, data_to_inquire, mode="separate"):
             sma = np.convolve(values, weights, 'valid')
             return sma
 
-        y = movingaverage(y,1000)
+        y = movingaverage(y,100)
         x = x[len(x)-len(y):]
         ## slicing
         # x = x[0:(length-1):slice_interval]
