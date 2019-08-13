@@ -84,11 +84,11 @@ def setup(difficulty_level='default', env_name = "AirSimEnv-v42"):
         denses = Dense(64, activation='relu')(denses)
 
     else:
-        image_model.add(Conv2D(32, (4, 4), strides=(4, 4), padding='valid', activation='relu', input_shape=img_kshape,
+        image_model.add(Conv2D(128, (3, 3), strides=(1, 1), padding='valid', activation='relu', input_shape=img_kshape,
                                data_format="channels_first"))
-        image_model.add(Conv2D(64, (3, 3), strides=(2, 2), padding='valid', activation='relu'))
-        image_model.add(Conv2D(128, (2, 2), strides=(1, 1), padding='valid', activation='relu'))
-        image_model.add(Conv2D(64, (1, 1), strides=(1, 1), padding='valid', activation='relu'))
+        image_model.add(Conv2D(128, (3, 3), strides=(1, 1), padding='valid', activation='relu'))
+        #image_model.add(Conv2D(128, (2, 2), strides=(1, 1), padding='valid', activation='relu'))
+        #image_model.add(Conv2D(64, (1, 1), strides=(1, 1), padding='valid', activation='relu'))
 
         image_model.add(Flatten())
 
@@ -107,9 +107,9 @@ def setup(difficulty_level='default', env_name = "AirSimEnv-v42"):
         # Concatenation of image, position, distance and geofence values.
         # 3 dense layers of 256 units
         denses = concatenate([encoded_image, vel, dst])
-        denses = Dense(256, activation='relu')(denses)
-        denses = Dense(256, activation='relu')(denses)
-        denses = Dense(256, activation='relu')(denses)
+        denses = Dense(128, activation='relu')(denses)
+        denses = Dense(128, activation='relu')(denses)
+        #denses = Dense(256, activation='relu')(denses)
 
     # Last dense layer with nb_actions for the output
     predictions = Dense(nb_actions, kernel_initializer='zeros', activation='linear')(denses)

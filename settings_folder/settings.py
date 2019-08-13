@@ -70,14 +70,14 @@ update_zone_window = 1000  # the window within which the  update_zone_accpetable
 default_range_dic = easy_range_dic = {"End": zone_dic["End"] * ["Mutable"],
                                       "MinimumDistance": [2],
                                       "EnvType": ["Indoor"],
-                                      "ArenaSize": [[50, 50, 20]],
+                                      "ArenaSize": [[25, 25, 20]],
                                       "PlayerStart": [[0, 0, 0]],
                                       "NumberOfDynamicObjects": list(range(0, 1)),
                                       "Walls1": [[255, 255, 10]],
                                       "Seed": list(range(0, 10000)),
                                       "VelocityRange": [[5, 25]],
                                       "Name": ["Name"],
-                                      "NumberOfObjects": list(range(0, 1))}
+                                      "NumberOfObjects": list(range(1, 5))}
 
 medium_range_dic = {"End": zone_dic["End"] * ["Mutable"],
                     "MinimumDistance": [2],
