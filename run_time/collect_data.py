@@ -67,7 +67,9 @@ def runTask(task):
             utils.reset_msg_logs()
             train_obj, env = train_class.setup(env_name=task["env_name"], \
                                                difficulty_level=task["difficulty_level"])
+            msgs.mode = 'test'
             train_class.test(train_obj, env, weights)
+
 
     if (task["task_type"] == "start_game"):
         game_handler = GameHandler()

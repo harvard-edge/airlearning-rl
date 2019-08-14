@@ -43,9 +43,16 @@ def train(env, agent):
 def test(env, agent, filepath):
     model = DQN.load(filepath)
     obs = env.reset()
-    for i in range(settings.testing_nb_episodes_per_model):
-        action, _states = model.predict(obs)
-        obs, rewards, dones, info = env.step(action)
+    episode_count = 0
+    while (True):
+        if(episode_count == settings.testing_nb_episodes_per_model):
+            exit(0)
+        else:
+            action, _states = model.predict(obs)
+            obs, rewards, dones, info = env.step(action)
+            if(dones == True):
+                env.reset()
+                episode_count += 1
 
 if __name__ == "__main__":
     env, agent = setup()
