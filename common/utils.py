@@ -50,22 +50,28 @@ def plot_data(file, data_to_inquire, mode="separate"):
         x = data[el[0]]
         y = data[el[1]]
         length = np.shape(x)[0]
-        print(y)
+
         if(el[1] == 'success'):
+            ep_count = 0
+            success_count = 0
             for i in range(length):
+                ep_count += 1
                 if(y[i] =='True'):
+                    success_count+=1
                     y[i] = 1
                 else:
                     y[i] = 0
-        
+            print('Succes rate:',success_count/ep_count,'\n')
+            print(ep_count,' runs \n')
+            print(success_count,' successes \n')
         pass_arr = data['success']
         if(el[1] == 'distance_traveled'):
             x_loc = []
             y_loc = []
             for i in range(length):
-                if(pass_arr[i] == 1 or pass_arr[i]=='True'):
-                    x_loc = np.append(x_loc,x[i])
-                    y_loc = np.append(y_loc,y[i])
+                # if(pass_arr[i] == 1 or pass_arr[i]=='True'):
+                x_loc = np.append(x_loc,x[i])
+                y_loc = np.append(y_loc,y[i])
             x = x_loc
             y = y_loc
         

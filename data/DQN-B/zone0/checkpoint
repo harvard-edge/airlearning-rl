@@ -1,2 +1,2 @@
-model_checkpoint_path: "C:\\Users\\bpdui\\Documents\\airlearning_public\\airlearning\\airlearning-rl\\data\\DQN-B\\zone0\\2.ckpt"
-all_model_checkpoint_paths: "C:\\Users\\bpdui\\Documents\\airlearning_public\\airlearning\\airlearning-rl\\data\\DQN-B\\zone0\\2.ckpt"
+model_checkpoint_path: "C:\\Users\\bpdui\\Documents\\airlearning_public\\airlearning\\airlearning-rl\\data\\DQN-B\\zone0\\4.ckpt"
+all_model_checkpoint_paths: "C:\\Users\\bpdui\\Documents\\airlearning_public\\airlearning\\airlearning-rl\\data\\DQN-B\\zone0\\4.ckpt"

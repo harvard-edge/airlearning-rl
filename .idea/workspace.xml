@@ -2,13 +2,39 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6ab5151f-4ea5-434a-83f4-87e7c14eb512" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/algorithms/discrete/dqn/dqn_baselines.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithms/discrete/dqn/dqn_baselines.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/DQN-B/zone0/0.ckpt.data-00000-of-00001" beforeDir="false" afterPath="$PROJECT_DIR$/data/DQN-B/zone0/0.ckpt.data-00000-of-00001" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/DQN-B/zone0/0.ckpt.index" beforeDir="false" afterPath="$PROJECT_DIR$/data/DQN-B/zone0/0.ckpt.index" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/DQN-B/zone0/0.ckpt.meta" beforeDir="false" afterPath="$PROJECT_DIR$/data/DQN-B/zone0/0.ckpt.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/DQN-B/zone0/0.pb" beforeDir="false" afterPath="$PROJECT_DIR$/data/DQN-B/zone0/0.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/DQN-B/zone0/0.pkl_meta_data" beforeDir="false" afterPath="$PROJECT_DIR$/data/DQN-B/zone0/0.pkl_meta_data" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/DQN-B/zone0/1.ckpt.data-00000-of-00001" beforeDir="false" afterPath="$PROJECT_DIR$/data/DQN-B/zone0/1.ckpt.data-00000-of-00001" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/DQN-B/zone0/1.ckpt.index" beforeDir="false" afterPath="$PROJECT_DIR$/data/DQN-B/zone0/1.ckpt.index" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/DQN-B/zone0/1.ckpt.meta" beforeDir="false" afterPath="$PROJECT_DIR$/data/DQN-B/zone0/1.ckpt.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/DQN-B/zone0/1.pb" beforeDir="false" afterPath="$PROJECT_DIR$/data/DQN-B/zone0/1.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/DQN-B/zone0/1.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/data/DQN-B/zone0/1.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/DQN-B/zone0/1.pkl_meta_data" beforeDir="false" afterPath="$PROJECT_DIR$/data/DQN-B/zone0/1.pkl_meta_data" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/DQN-B/zone0/2.ckpt.data-00000-of-00001" beforeDir="false" afterPath="$PROJECT_DIR$/data/DQN-B/zone0/2.ckpt.data-00000-of-00001" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/DQN-B/zone0/2.ckpt.index" beforeDir="false" afterPath="$PROJECT_DIR$/data/DQN-B/zone0/2.ckpt.index" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/DQN-B/zone0/2.ckpt.meta" beforeDir="false" afterPath="$PROJECT_DIR$/data/DQN-B/zone0/2.ckpt.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/DQN-B/zone0/2.pb" beforeDir="false" afterPath="$PROJECT_DIR$/data/DQN-B/zone0/2.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/DQN-B/zone0/2.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/data/DQN-B/zone0/2.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/DQN-B/zone0/2.pkl_meta_data" beforeDir="false" afterPath="$PROJECT_DIR$/data/DQN-B/zone0/2.pkl_meta_data" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/DQN-B/zone0/3.ckpt.data-00000-of-00001" beforeDir="false" afterPath="$PROJECT_DIR$/data/DQN-B/zone0/3.ckpt.data-00000-of-00001" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/DQN-B/zone0/3.ckpt.index" beforeDir="false" afterPath="$PROJECT_DIR$/data/DQN-B/zone0/3.ckpt.index" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/DQN-B/zone0/3.ckpt.meta" beforeDir="false" afterPath="$PROJECT_DIR$/data/DQN-B/zone0/3.ckpt.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/DQN-B/zone0/3.pb" beforeDir="false" afterPath="$PROJECT_DIR$/data/DQN-B/zone0/3.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/DQN-B/zone0/3.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/data/DQN-B/zone0/3.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/DQN-B/zone0/3.pkl_meta_data" beforeDir="false" afterPath="$PROJECT_DIR$/data/DQN-B/zone0/3.pkl_meta_data" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/DQN-B/zone0/4.ckpt.data-00000-of-00001" beforeDir="false" afterPath="$PROJECT_DIR$/data/DQN-B/zone0/4.ckpt.data-00000-of-00001" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/DQN-B/zone0/4.ckpt.index" beforeDir="false" afterPath="$PROJECT_DIR$/data/DQN-B/zone0/4.ckpt.index" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/DQN-B/zone0/4.ckpt.meta" beforeDir="false" afterPath="$PROJECT_DIR$/data/DQN-B/zone0/4.ckpt.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/DQN-B/zone0/4.pb" beforeDir="false" afterPath="$PROJECT_DIR$/data/DQN-B/zone0/4.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/DQN-B/zone0/4.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/data/DQN-B/zone0/4.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/DQN-B/zone0/4.pkl_meta_data" beforeDir="false" afterPath="$PROJECT_DIR$/data/DQN-B/zone0/4.pkl_meta_data" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/DQN-B/zone0/checkpoint" beforeDir="false" afterPath="$PROJECT_DIR$/data/DQN-B/zone0/checkpoint" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gym_airsim/envs/AirGym.py" beforeDir="false" afterPath="$PROJECT_DIR$/gym_airsim/envs/AirGym.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gym_airsim/envs/airlearningclient.py" beforeDir="false" afterPath="$PROJECT_DIR$/gym_airsim/envs/airlearningclient.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_time/collect_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/run_time/collect_data.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/settings_folder/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings_folder/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stable_baselines/deepq/dqn.py" beforeDir="false" afterPath="$PROJECT_DIR$/stable_baselines/deepq/dqn.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stable_baselines/deepq/policies.py" beforeDir="false" afterPath="$PROJECT_DIR$/stable_baselines/deepq/policies.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,23 +43,30 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gym_airsim/envs/airlearningclient.py">
+        <entry file="file://$PROJECT_DIR$/run_time/collect_data.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="357" column="68" selection-start-line="357" selection-start-column="68" selection-end-line="357" selection-end-column="68" />
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="472">
+              <caret line="69" column="30" lean-forward="true" selection-start-line="69" selection-start-column="30" selection-end-line="69" selection-end-column="30" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/stable_baselines/deepq/dqn.py">
+        <entry file="file://$PROJECT_DIR$/algorithms/discrete/dqn/dqn_airsim.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
+            <state relative-caret-position="510">
+              <caret line="186" column="26" lean-forward="true" selection-start-line="186" selection-start-column="26" selection-end-line="186" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/settings_folder/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="188" column="16" lean-forward="true" selection-start-line="188" selection-start-column="16" selection-end-line="188" selection-end-column="16" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -41,23 +74,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/stable_baselines/deepq/policies.py">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/algorithms/discrete/dqn/dqn_baselines.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="612">
-              <caret line="165" column="27" selection-start-line="165" selection-start-column="27" selection-end-line="165" selection-end-column="27" />
-              <folding>
-                <element signature="e#0#45#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="696">
+              <caret line="55" lean-forward="true" selection-start-line="55" selection-end-line="55" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/run_time/collect_data.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/tornado/platform/select.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="946">
-              <caret line="93" column="49" selection-start-line="93" selection-start-column="49" selection-end-line="93" selection-end-column="49" />
+            <state relative-caret-position="117">
+              <caret line="63" selection-start-line="63" selection-end-line="63" />
             </state>
           </provider>
         </entry>
@@ -65,11 +95,44 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gym_airsim/envs/AirGym.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="588">
-              <caret line="134" column="68" lean-forward="true" selection-start-line="134" selection-start-column="68" selection-end-line="134" selection-end-column="68" />
+            <state relative-caret-position="255">
+              <caret line="585" lean-forward="true" selection-start-line="585" selection-end-line="585" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/algorithms/discrete/dqn/callbacks.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="277">
+              <caret line="439" column="8" selection-start-line="439" selection-start-column="8" selection-end-line="439" selection-end-column="8" />
+              <folding>
+                <element signature="e#0#31#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/common/utils.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="226">
+              <caret line="167" selection-start-line="167" selection-end-line="167" />
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/msgs_folder/msgs.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -79,7 +142,27 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>4</find>
-      <find>4</find>
+      <find>step</find>
+      <find>_step</find>
+      <find>not supported as</find>
+      <find>_step()</find>
+      <find>runTask</find>
+      <find>append_log_file</find>
+      <find>reset_m</find>
+      <find>reset_msg_logs</find>
+      <find>nb_max_episodes_steps</find>
+      <find>restart_window_if_necessary</find>
+      <find>populate_episodal_log_dic</find>
+      <find>dqn_baselines_call_back_emulator</find>
+      <find>msgs.mode</find>
+      <find>on_episode)</find>
+      <find>on_episode_start</find>
+      <find>_reset()</find>
+      <find>_reset</find>
+      <find>on_episode_end</find>
+      <find>collided</find>
+      <find>self._reset</find>
+      <find>episode</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -89,17 +172,19 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/gym_airsim/envs/airlearningclient.py" />
-        <option value="$PROJECT_DIR$/gym_airsim/envs/AirGym.py" />
         <option value="$PROJECT_DIR$/stable_baselines/deepq/policies.py" />
+        <option value="$PROJECT_DIR$/common/utils.py" />
+        <option value="$PROJECT_DIR$/gym_airsim/envs/AirGym.py" />
         <option value="$PROJECT_DIR$/run_time/collect_data.py" />
+        <option value="$PROJECT_DIR$/algorithms/discrete/dqn/dqn_baselines.py" />
+        <option value="$PROJECT_DIR$/settings_folder/settings.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="2576" />
-    <option name="height" value="1416" />
+  <component name="ProjectFrameBounds" extendedState="1">
+    <option name="x" value="-7" />
+    <option name="width" value="1932" />
+    <option name="height" value="1047" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -116,7 +201,59 @@
             <path>
               <item name="airlearning-rl" type="b2602c69:ProjectViewProjectNode" />
               <item name="airlearning-rl" type="462c0819:PsiDirectoryNode" />
+              <item name="algorithms" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="airlearning-rl" type="b2602c69:ProjectViewProjectNode" />
+              <item name="airlearning-rl" type="462c0819:PsiDirectoryNode" />
+              <item name="algorithms" type="462c0819:PsiDirectoryNode" />
+              <item name="continuous" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="airlearning-rl" type="b2602c69:ProjectViewProjectNode" />
+              <item name="airlearning-rl" type="462c0819:PsiDirectoryNode" />
+              <item name="algorithms" type="462c0819:PsiDirectoryNode" />
+              <item name="continuous" type="462c0819:PsiDirectoryNode" />
+              <item name="ppo" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="airlearning-rl" type="b2602c69:ProjectViewProjectNode" />
+              <item name="airlearning-rl" type="462c0819:PsiDirectoryNode" />
+              <item name="algorithms" type="462c0819:PsiDirectoryNode" />
+              <item name="discrete" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="airlearning-rl" type="b2602c69:ProjectViewProjectNode" />
+              <item name="airlearning-rl" type="462c0819:PsiDirectoryNode" />
+              <item name="algorithms" type="462c0819:PsiDirectoryNode" />
+              <item name="discrete" type="462c0819:PsiDirectoryNode" />
+              <item name="dqn" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="airlearning-rl" type="b2602c69:ProjectViewProjectNode" />
+              <item name="airlearning-rl" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="airlearning-rl" type="b2602c69:ProjectViewProjectNode" />
+              <item name="airlearning-rl" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="airlearning-rl" type="b2602c69:ProjectViewProjectNode" />
+              <item name="airlearning-rl" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+              <item name="msgs_folder" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="airlearning-rl" type="b2602c69:ProjectViewProjectNode" />
+              <item name="airlearning-rl" type="462c0819:PsiDirectoryNode" />
               <item name="run_time" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="airlearning-rl" type="b2602c69:ProjectViewProjectNode" />
+              <item name="airlearning-rl" type="462c0819:PsiDirectoryNode" />
+              <item name="settings_folder" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -126,6 +263,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunDashboard">
@@ -204,72 +342,231 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="2576" height="1416" extended-state="0" />
-    <editor active="true" />
+    <frame x="-7" y="0" width="1932" height="1047" extended-state="1" />
     <layout>
-      <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24980299" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.3347413" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Python Console" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.29978117" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/run_time/collect_data.py</url>
+          <line>118</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/gym_airsim/envs/AirGym.py</url>
+          <line>389</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/run_time/collect_data.py</url>
+          <line>102</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/run_time/collect_data.py</url>
+          <line>70</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/common/utils.py</url>
+          <line>104</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/run_time/collect_data.py</url>
+          <line>114</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/run_time/collect_data.py</url>
+          <line>60</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/gym_airsim/envs/AirGym.py</url>
+          <line>480</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/gym_airsim/envs/AirGym.py</url>
+          <line>318</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="msgs.mode" />
+      </configuration>
+    </watches-manager>
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/gym_airsim/envs/AirGym.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="588">
-          <caret line="134" column="68" lean-forward="true" selection-start-line="134" selection-start-column="68" selection-end-line="134" selection-end-column="68" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/gym_airsim/envs/airlearningclient.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="357" column="68" selection-start-line="357" selection-start-column="68" selection-end-line="357" selection-end-column="68" />
+        <state relative-caret-position="6086">
+          <caret line="369" column="68" selection-start-line="369" selection-start-column="68" selection-end-line="369" selection-end-column="68" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/stable_baselines/deepq/dqn.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/stable_baselines/deepq/policies.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="165" column="27" selection-start-line="165" selection-start-column="27" selection-end-line="165" selection-end-column="27" />
+        <state relative-caret-position="2720">
+          <caret line="165" column="28" selection-start-line="165" selection-start-column="28" selection-end-line="165" selection-end-column="28" />
           <folding>
             <element signature="e#0#45#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/tensorflow/python/client/session.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="1553" selection-start-line="1553" selection-end-line="1553" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/airsim/client.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="457" selection-start-line="457" selection-end-line="457" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/psutil/_pswindows.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="746" selection-start-line="746" selection-end-line="746" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game_handling/game_handler_class.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="147" selection-start-line="147" selection-end-line="147" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/tornado/platform/select.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="63" selection-start-line="63" selection-end-line="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="167" selection-start-line="167" selection-end-line="167" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/algorithms/discrete/dqn/callbacks.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="277">
+          <caret line="439" column="8" selection-start-line="439" selection-start-column="8" selection-end-line="439" selection-end-column="8" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/msgs_folder/msgs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/keras/engine/saving.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="464">
+          <caret line="799" selection-start-line="799" selection-end-line="799" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/stable_baselines/deepq/dqn.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="328">
+          <caret line="285" selection-start-line="285" selection-end-line="285" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/algorithms/discrete/dqn/dqn_airsim.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="186" column="26" lean-forward="true" selection-start-line="186" selection-start-column="26" selection-end-line="186" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/algorithms/continuous/ppo/ppo_airsim.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="46" column="52" lean-forward="true" selection-start-line="46" selection-start-column="52" selection-end-line="46" selection-end-column="52" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gym_airsim/envs/AirGym.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="585" lean-forward="true" selection-start-line="585" selection-end-line="585" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/settings_folder/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="188" column="16" lean-forward="true" selection-start-line="188" selection-start-column="16" selection-end-line="188" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/run_time/collect_data.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="946">
-          <caret line="93" column="49" selection-start-line="93" selection-start-column="49" selection-end-line="93" selection-end-column="49" />
+        <state relative-caret-position="472">
+          <caret line="69" column="30" lean-forward="true" selection-start-line="69" selection-start-column="30" selection-end-line="69" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/algorithms/discrete/dqn/dqn_baselines.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="696">
+          <caret line="55" lean-forward="true" selection-start-line="55" selection-end-line="55" />
         </state>
       </provider>
     </entry>

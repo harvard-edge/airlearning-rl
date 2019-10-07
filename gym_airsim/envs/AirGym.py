@@ -322,6 +322,7 @@ class AirSimEnv(gym.Env):
                 with open(msgs.weight_file_under_test+"_test"+str(msgs.tst_inst_ctr) + "_meta_data", "w") as file_hndle:
                     json.dump(msgs.meta_data, file_hndle)
                     json.dump(msgs.meta_data, file_hndle)
+
             else:
                 print("this mode " + str(msgs.mode) + "is not defined. only train and test defined")
                 exit(0)
