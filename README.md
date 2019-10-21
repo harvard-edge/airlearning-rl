@@ -32,7 +32,13 @@ Clone the Air Learning Project
 ```$ cd airlearning/airlearning-rl```
 
 Lets call the directory where airlearning is cloned as <AIRLEARNING_ROOT>
-### Step 3: Setup the machine_dependent_settings.py file
+
+### Step 3: Install AirLearning modifications to AirSim Client
+
+``` $ cd airlearning-rl/misc/move_to_airsim/```
+
+```$ python move.py```
+### Step 4: Setup the machine_dependent_settings.py file
 
 You need to point to the directory where Unreal Project files are installed. Please install them before you follow the instructions below.The instructions for installing Air Learning Environment Generator is [here](https://github.com/harvard-edge/airlearning-ue4/tree/b4f27ea457936609745ddad1191ab8c54f8799ac). 
 
