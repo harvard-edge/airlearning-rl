@@ -52,7 +52,7 @@ checkpoint_interval = 50000
 # ---------------------------
 # how many zones for each variable for the entire range. Note that frequency
 # of moving to a new zone is not determined here
-zone_dic = {"Seed": 1, "NumberOfDynamicObjects": 1, "MinimumDistance": 1, "VelocityRange": 1, "End": 3}  # pay attention
+zone_dic = {"Seed": 1, "NumberOfDynamicObjects": 1, "MinimumDistance": 1, "VelocityRange": 1, "End": 1}  # pay attention
 
 # update_zone_success_threshold = 50
 acceptable_success_rate_to_update_zone = 0.5  # after what ration of success up the zone # pay attention
@@ -71,14 +71,14 @@ update_zone_window = 1000  # the window within which the  update_zone_accpetable
 default_range_dic = easy_range_dic = {"End": zone_dic["End"] * ["Mutable"],
                                       "MinimumDistance": [2],
                                       "EnvType": ["Indoor"],
-                                      "ArenaSize": [[10, 10, 20]],
+                                      "ArenaSize": [[5, 5, 20]],
                                       "PlayerStart": [[0, 0, 0]],
                                       "NumberOfDynamicObjects": list(range(0, 1)),
                                       "Walls1": [[255, 255, 10]],
                                       "Seed": list(range(0, 10000)),
                                       "VelocityRange": [[5, 25]],
                                       "Name": ["Name"],
-                                      "NumberOfObjects": list(range(0,2))}
+                                      "NumberOfObjects": list(range(0,1))}
 
 medium_range_dic = {"End": zone_dic["End"] * ["Mutable"],
                     "MinimumDistance": [2],
@@ -143,7 +143,7 @@ move_by_position = False
 # ---------------------------
 
 buffer_size = 100000
-batch_size = 64  # ToDo: Determine what this value is
+batch_size = 200  # ToDo: Determine what this value is
 gamma = 0.99
 tau = 0.001  # Target Network HyperParameters
 lra = 0.0001  # Learning rate for Actor
@@ -158,9 +158,10 @@ epsilon = 1
 # ---------------------------
 # DQN parameters
 # ---------------------------
-use_history = True    # if true previous states are fed to network
+use_history = False    # if true previous states are fed to network
+add_gradient = True
 CNN_time_samples = 1    # amount of total samples fed to the net
-SS_input_size = 5       # size of 1 state
+SS_input_size = 6       # size of 1 state
 
 velocity_noise = True
 noise_std = 0.25
@@ -197,15 +198,15 @@ backup_folder_name_style = "bu_0"  # the backup obj will create a file with this
 # general params
 # ---------------------------``
 list_algo = ["DQN", "DDPG"]  # a new algo needs to be added to this list for backup to back up its results
-nb_max_episodes_steps = 750  # pay attention
+nb_max_episodes_steps = 300  # pay attention
 # assert(nb_max_episodes_steps > 16 )
-success_distance_to_goal = 1
-slow_down_activation_distance = 1 * success_distance_to_goal  # detrmines at which distant we will punish the higher velocities
+success_distance_to_goal = 1.0
+slow_down_activation_distance = 0.1 * success_distance_to_goal  # detrmines at which distant we will punish the higher velocities
 # ---------------------------
 # training params
 # ---------------------------
 training_steps_cap = 1000000
-nb_steps_warmup = 300
+nb_steps_warmup = 500
 episode_count_cap = 100000
 policy = "shallow"
 curriculum_learning = True

@@ -98,17 +98,17 @@ def main():
     taskList = []
     model_weights_list_to_test = ["C:/Users/bpdui/Documents/airlearning_public/airlearning/airlearning-rl/data/DQN-B/zone0/0.pkl"]
 
-    task1 = {"task_type": "start_game"}
-    task2 = {"algo": "DQN-B", "task_type": "test", "difficulty_level": "easy", "env_name": "AirSimEnv-v42",
-    "weights": model_weights_list_to_test}
+    # task1 = {"task_type": "start_game"}
+    # task2 = {"algo": "DQN-B", "task_type": "train", "difficulty_level": "easy", "env_name": "AirSimEnv-v42",
+    # "weights": model_weights_list_to_test}
     #  "weights": model_weights_list_to_test}
-    # task1 = {"task_type": "plot_data", "algo": "DQN-B", "data_file": "train_episodal_log_2.txt","plot_data_mode": "separate",  \
-    #       "data_to_plot":  [('episodeNInZone',"success" ), ('episodeNInZone',"distance_traveled")]\
-    #       }
+    task1 = {"task_type": "plot_data", "algo": "DQN-B", "data_file": "train_episodal_log_2.txt","plot_data_mode": "separate",  \
+          "data_to_plot":  [('episodeNInZone',"success" ), ('episodeNInZone',"distance_traveled")]\
+          }
 
 
     taskList.append(task1)
-    taskList.append(task2)
+    # taskList.append(task2)
 
     for task_el in taskList:
         runTask(task_el)

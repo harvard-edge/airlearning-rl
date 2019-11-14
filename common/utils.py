@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 import shutil
 import pandas as pd
 import subprocess
-
+import time
 
 def parse_data(file_name):
     if (file_name == ''):
@@ -174,85 +174,101 @@ def reset_msg_logs():
     msgs.restart_game_count = 0
 
 
-def get_random_end_point(arena_size, split_index, total_num_of_splits):
-    # distance from the walls
-    wall_halo = floor_halo = roof_halo = 1
-    goal_halo = settings.slow_down_activation_distance + 1
+# def get_random_end_point(arena_size, split_index, total_num_of_splits):
+#     # distance from the walls
+#     wall_halo = floor_halo = roof_halo = 1
+#     goal_halo = settings.slow_down_activation_distance 
 
-    sampling_quanta = .5  # sampling increment
+#     sampling_quanta = .5  # sampling increment
 
-    # how big the split is (in only one direction, i.e pos or neg)
-    idx0_quanta = float((arena_size[0] - 2 * goal_halo - 2 * wall_halo)) / (2 * total_num_of_splits)
-    idx1_quanta = float((arena_size[1] - 2 * goal_halo - 2 * wall_halo)) / (2 * total_num_of_splits)
-    idx2_quanta = float((arena_size[2])) / (2 * total_num_of_splits)
+#     # how big the split is (in only one direction, i.e pos or neg)
+#     idx0_quanta = float((arena_size[0] - 2 * goal_halo - 2 * wall_halo)) / (2 * total_num_of_splits)
+#     idx1_quanta = float((arena_size[1] - 2 * goal_halo - 2 * wall_halo)) / (2 * total_num_of_splits)
+#     idx2_quanta = float((arena_size[2])) / (2 * total_num_of_splits)
 
-    idx0_up_pos_bndry = (split_index + 1) * idx0_quanta
-    idx1_up_pos_bndry = (split_index + 1) * idx1_quanta
-    idx2_up_pos_bndry = (split_index + 1) * idx2_quanta
+#     idx0_up_pos_bndry = (split_index + 1) * idx0_quanta
+#     idx1_up_pos_bndry = (split_index + 1) * idx1_quanta
+#     idx2_up_pos_bndry = (split_index + 1) * idx2_quanta
 
-    if (settings.end_randomization_mode == "inclusive"):
-        idx0_low_pos_bndry = 0
-        idx1_low_pos_bndry = 0
-        idx2_low_pos_bndry = 0
-    else:
-        idx0_low_pos_bndry = (split_index) * idx0_quanta
-        idx1_low_pos_bndry = (split_index) * idx1_quanta
-        idx2_low_pos_bndry = (split_index) * idx2_quanta
+#     if (settings.end_randomization_mode == "inclusive"):
+#         idx0_low_pos_bndry = 0
+#         idx1_low_pos_bndry = 0
+#         idx2_low_pos_bndry = 0
+#     else:
+#         idx0_low_pos_bndry = (split_index) * idx0_quanta
+#         idx1_low_pos_bndry = (split_index) * idx1_quanta
+#         idx2_low_pos_bndry = (split_index) * idx2_quanta
 
-    assert (
-            idx0_up_pos_bndry - idx0_low_pos_bndry > sampling_quanta), "End doesn't fit within the zone, expand the arena size or reduce number of zones"
-    assert (
-            idx1_up_pos_bndry - idx1_low_pos_bndry > sampling_quanta), "End doesn't fit within the zone, expand the arena size or reduce number of zones"
-    assert (
-            idx2_up_pos_bndry - idx2_low_pos_bndry > sampling_quanta), "End doesn't fit within the zone, expand the arena size or reduce number of zones"
+#     assert (
+#             idx0_up_pos_bndry - idx0_low_pos_bndry > sampling_quanta), "End doesn't fit within the zone, expand the arena size or reduce number of zones"
+#     assert (
+#             idx1_up_pos_bndry - idx1_low_pos_bndry > sampling_quanta), "End doesn't fit within the zone, expand the arena size or reduce number of zones"
+#     assert (
+#             idx2_up_pos_bndry - idx2_low_pos_bndry > sampling_quanta), "End doesn't fit within the zone, expand the arena size or reduce number of zones"
 
-    rnd_pos_idx0 = random.choice(list(np.arange(
-        idx0_low_pos_bndry + goal_halo, idx0_up_pos_bndry + goal_halo, sampling_quanta)))
-    rnd_pos_idx1 = random.choice(list(np.arange(
-        idx1_low_pos_bndry + goal_halo, idx1_up_pos_bndry + goal_halo, sampling_quanta)))
-    rnd_pos_idx2 = random.choice(list(np.arange(
-        idx2_low_pos_bndry + goal_halo, idx2_up_pos_bndry + goal_halo, sampling_quanta)))
+#     rnd_pos_idx0 = random.choice(list(np.arange(
+#         idx0_low_pos_bndry + goal_halo, idx0_up_pos_bndry + goal_halo, sampling_quanta)))
+#     rnd_pos_idx1 = random.choice(list(np.arange(
+#         idx1_low_pos_bndry + goal_halo, idx1_up_pos_bndry + goal_halo, sampling_quanta)))
+#     rnd_pos_idx2 = random.choice(list(np.arange(
+#         idx2_low_pos_bndry + goal_halo, idx2_up_pos_bndry + goal_halo, sampling_quanta)))
 
-    rnd_neg_idx0 = random.choice(list(np.arange(
-        -idx0_up_pos_bndry - goal_halo, -idx0_low_pos_bndry - goal_halo, sampling_quanta)))
+#     rnd_neg_idx0 = random.choice(list(np.arange(
+#         -idx0_up_pos_bndry - goal_halo, -idx0_low_pos_bndry - goal_halo, sampling_quanta)))
 
-    rnd_neg_idx1 = random.choice(list(np.arange(
-        -idx1_up_pos_bndry - goal_halo, -idx1_low_pos_bndry - goal_halo, sampling_quanta)))
+#     rnd_neg_idx1 = random.choice(list(np.arange(
+#         -idx1_up_pos_bndry - goal_halo, -idx1_low_pos_bndry - goal_halo, sampling_quanta)))
 
-    rnd_neg_idx2 = random.choice(list(np.arange(
-        -idx2_up_pos_bndry - goal_halo, -idx2_low_pos_bndry - goal_halo, sampling_quanta)))
+#     rnd_neg_idx2 = random.choice(list(np.arange(
+#         -idx2_up_pos_bndry - goal_halo, -idx2_low_pos_bndry - goal_halo, sampling_quanta)))
 
-    rnd_idx0 = random.choice([rnd_neg_idx0, rnd_pos_idx0])
-    rnd_idx1 = random.choice([rnd_neg_idx1, rnd_pos_idx1])
-    rnd_idx2 = random.choice([rnd_neg_idx2, rnd_pos_idx2])
+#     rnd_idx0 = random.choice([rnd_neg_idx0, rnd_pos_idx0])
+#     rnd_idx1 = random.choice([rnd_neg_idx1, rnd_pos_idx1])
+#     rnd_idx2 = random.choice([rnd_neg_idx2, rnd_pos_idx2])
 
-    """
-	idx0_up_pos_bndry = int(arena_size[0]/2)
-	idx1__up_pos_bndry = int(arena_size[1]/2)
-	idx2__up_pos_bndry = int(arena_size[2])
+#     """
+# 	idx0_up_pos_bndry = int(arena_size[0]/2)
+# 	idx1__up_pos_bndry = int(arena_size[1]/2)
+# 	idx2__up_pos_bndry = int(arena_size[2])
 
-	idx0_neg_bndry = int(-1*arena_size[0]/2)
-	idx1_neg_bndry = int(-1*arena_size[1]/2)
-	idx2_neg_bndry = 0
+# 	idx0_neg_bndry = int(-1*arena_size[0]/2)
+# 	idx1_neg_bndry = int(-1*arena_size[1]/2)
+# 	idx2_neg_bndry = 0
 	
-	rnd_idx0 = random.choice(list(range(
-		idx0_neg_bndry + end_halo, idx0_pos_bndry - end_halo)))
+# 	rnd_idx0 = random.choice(list(range(
+# 		idx0_neg_bndry + end_halo, idx0_pos_bndry - end_halo)))
 	
-	rnd_idx1 = random.choice(list(range(
-		idx1_neg_bndry + end_halo, idx1_pos_bndry - end_halo)))
+# 	rnd_idx1 = random.choice(list(range(
+# 		idx1_neg_bndry + end_halo, idx1_pos_bndry - end_halo)))
 	 
-	rnd_idx2 = random.choice(list(range(
-	   0 + floor_halo, idx2_pos_bndry - roof_halo)))
-	"""
-    grounded_idx2 = 0  # to force the end on the ground, otherwise, it'll
-    # be fallen (due to gravity) but then distance
-    # calculation to goal becomes faulty
+# 	rnd_idx2 = random.choice(list(range(
+# 	   0 + floor_halo, idx2_pos_bndry - roof_halo)))
+# 	"""
+#     grounded_idx2 = 0  # to force the end on the ground, otherwise, it'll
+#     # be fallen (due to gravity) but then distance
+#     # calculation to goal becomes faulty
 
-    if (rnd_idx0 == rnd_idx1 == 0):  # to avoid being on the start position
-        rnd_idx0 = idx0_pos_bndry - end_halo
+#     if (rnd_idx0 == rnd_idx1 == 0):  # to avoid being on the start position
+#         rnd_idx0 = idx0_pos_bndry - end_halo
 
-    return [rnd_idx0, rnd_idx1, grounded_idx2]
+#     print([rnd_idx0, rnd_idx1, grounded_idx2])
+#     return [rnd_idx0, rnd_idx1, grounded_idx2]
 
+def get_random_end_point(arena_size, split_index, total_num_of_splits):
+    random.seed(time.time())
+    
+    wall_clearance = 0.5
+    init_clearance = 1.0
+    free_space_0 = arena_size[0] - 2*(wall_clearance+init_clearance)
+    free_space_1 = arena_size[1] - 2*(wall_clearance+init_clearance)
+
+    x = random.random()
+    y = random.random()
+
+    x = -0.5*arena_size[0]+wall_clearance+x*free_space_0 + (x>0.5)*(2*init_clearance)
+    y = -0.5*arena_size[1]+wall_clearance+y*free_space_1 + (y>0.5)*(2*init_clearance)
+
+    return [x, y, 0]
 
 # return [rnd_idx0, rnd_idx1, rnd_idx2]
 

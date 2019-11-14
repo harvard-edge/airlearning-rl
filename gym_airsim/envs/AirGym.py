@@ -99,7 +99,17 @@ class AirSimEnv(gym.Env):
         self.game_config_handler = GameConfigHandler()
         if(settings.concatenate_inputs):
             self.concat_state = np.zeros((1, 1, STATE_POS + STATE_DEPTH_H * STATE_DEPTH_W), dtype=np.uint8)
-        self.ss_state = np.zeros((settings.SS_input_size*settings.CNN_time_samples,)) #source-seeking, row-vector with all laser range values and and distance to source    
+        
+        if settings.add_gradient:
+            self.ss_state = np.zeros((6,))
+        else:
+            self.ss_state = np.zeros((settings.SS_input_size*settings.CNN_time_samples,)) #source-seeking, row-vector with all laser range values and and distance to source    
+        
+        self.s1 = 0     # term one as input to the network
+        self.s2 = 0     # term two as input to the network
+        self.c = 0      # current source readings
+        self.c_f = 1    # low-pass filter of the source readings
+        
         self.depth = np.zeros((154, 256), dtype=np.uint8)
         self.rgb = np.zeros((154, 256, 3), dtype=np.uint8)
         self.grey = np.zeros((144, 256), dtype=np.uint8)
@@ -214,17 +224,11 @@ class AirSimEnv(gym.Env):
         # get exact coordiantes of the tip
         distance_now = np.sqrt(np.power((self.goal[0] - now[0]), 2) + np.power((self.goal[1] - now[1]), 2))
         distance_before = self.allLogs['distance'][-1]
-        distance_correction = (distance_before - distance_now)
+        distance_correction = 20*(distance_before - distance_now)
         r = -1
-
-        # check if you are too close to the goal, if yes, you need to reduce the yaw and speed
-        if distance_now < settings.slow_down_activation_distance:
-            yaw_correction =  abs(self.track) * distance_now 
-            velocity_correction = (settings.mv_fw_spd_4 - self.speed)* settings.mv_fw_dur
-            r = r + distance_correction + velocity_correction
-        else:
-            r = r + distance_correction
+        r = r + distance_correction
         return r, distance_now
+        
     def ddpg_add_noise_action(self, actions):
         noise_t = np.zeros([1, self.action_space.shape[0]])
         a_t = np.zeros([1, self.action_space.shape[0]])
@@ -535,9 +539,9 @@ class AirSimEnv(gym.Env):
 
             if(settings.use_history==True):
                 self.ss_state[settings.SS_input_size:(settings.SS_input_size*settings.CNN_time_samples)] = self.ss_state[0:settings.SS_input_size*(settings.CNN_time_samples-1)]
-                self.ss_state[0:settings.SS_input_size] = self.airgym.get_SS_state(self.goal)
+                self.ss_state[0:settings.SS_input_size] = self.airgym.get_SS_state(self)
             else:
-                self.ss_state = self.airgym.get_SS_state(self.goal)
+                self.ss_state = self.airgym.get_SS_state(self)
             print(self.ss_state)
             if(settings.profile):
                 clct_state_end = time.time()
@@ -563,10 +567,6 @@ class AirSimEnv(gym.Env):
             elif collided == True:
                 done = True
                 reward = -100.0
-                self.success = False
-            elif (now[2] < -15): # Penalize for flying away too high
-                done = True
-                reward = -100
                 self.success = False
             else:
                 reward, distance = self.computeReward(now)
@@ -620,9 +620,9 @@ class AirSimEnv(gym.Env):
         self.velocity = self.airgym.drone_velocity()
         if(settings.use_history==True):
             for i in range(settings.CNN_time_samples):
-                self.ss_state[(i*settings.SS_input_size):((i+1)*settings.SS_input_size)] = self.airgym.get_SS_state(self.goal)            
+                self.ss_state[(i*settings.SS_input_size):((i+1)*settings.SS_input_size)] = self.airgym.get_SS_state(self)            
         else:
-            self.ss_state = self.airgym.get_SS_state(self.goal)
+            self.ss_state = self.airgym.get_SS_state(self)
         msgs.cur_zone_number = self.cur_zone_number_buff  #which delays the update for cur_zone_number
 
     def _reset(self):
