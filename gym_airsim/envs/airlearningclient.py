@@ -192,12 +192,15 @@ class AirLearningClient(airsim.MultirotorClient):
         sensor_read = self.get_sensor_read(euclidean)
         # -- append distance to output array -- #
         if settings.add_gradient:
-            state.c = sensor_read
+            state.c = sensor_read-state.old_source_reading
+            print(state.c)
             state.c_f = 0.9*state.c_f + 0.1*state.c
             state.s1 = (state.c-state.c_f)/state.c_f
-            state.s2 = 2*(state.c_f/self.get_sensor_read(0))-1
+            state.s2 = 2*(state.c_f/5.95)-1
 
             output = np.append(output,[state.s1,state.s2])
+            state.old_source_reading = sensor_read
+            
         else:
             output = np.append(output,sensor_read)
 
@@ -418,11 +421,11 @@ class AirLearningClient(airsim.MultirotorClient):
         #     start, duration = self.move_forward_Speed(0,-settings.mv_fw_spd_3+delta,settings.mv_fw_dur)   #-y
 
         if action == 0:
-            start, duration = self.straight(0.5, 0.3)  # move forward
+            start, duration = self.straight(0.5, 0.25)  # move forward
         if action == 1:
-            start, duration = self.yaw_right(settings.yaw_rate_1_2, 0.3)  # yaw right
+            start, duration = self.yaw_right(settings.yaw_rate_1_2, 0.25)  # yaw right
         if action == 2:
-            start, duration = self.yaw_right(settings.yaw_rate_2_4, 0.3)  # yaw left
+            start, duration = self.yaw_right(settings.yaw_rate_2_4, 0.25)  # yaw left
 
         collided = (self.client.getMultirotorState().trip_stats.collision_count > 0)
         #print("collided:", self.client.getCollisionInfo().has_collided," timestamp:" ,self.client.getCollisionInfo().time_stamp)

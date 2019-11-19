@@ -93,6 +93,7 @@ class AirSimEnv(gym.Env):
         self.episodeNInZone = 0 #counts the numbers of the episodes per Zone
                                 #,hence gets reset upon moving on to new zone
         self.count = 0
+        self.old_source_reading = 0
         self.check_point = file_handling.CheckPoint()
         self.game_handler = GameHandler()
         self.OU = OU()
@@ -122,6 +123,9 @@ class AirSimEnv(gym.Env):
         self.success = False
         self.zone = 0
         self.total_streched_ctr = 0
+
+        self.old_dist_position = np.array([0,0,0])
+        self.dist_accumulate = 0
 
         self.actions_in_step = []
         self.position_in_step = []
@@ -384,7 +388,8 @@ class AirSimEnv(gym.Env):
         msgs.episodal_log_dic["total_reward"] = self.total_reward
         msgs.episodal_log_dic["total_step_count_for_experiment"] = self.total_step_count_for_experiment
         msgs.episodal_log_dic["goal"] = self.goal
-        msgs.episodal_log_dic["distance_traveled"] = self.airgym.client.getMultirotorState().trip_stats.distance_traveled
+        #msgs.episodal_log_dic["distance_traveled"] = self.airgym.client.getMultirotorState().trip_stats.distance_traveled
+        msgs.episodal_log_dic["distance_traveled"] = self.dist_accumulate
         msgs.episodal_log_dic["energy_consumed"] = self.airgym.client.getMultirotorState().trip_stats.energy_consumed
         msgs.episodal_log_dic["flight_time"] = self.airgym.client.getMultirotorState().trip_stats.flight_time
         msgs.episodal_log_dic["time_stamp"] = self.airgym.client.getMultirotorState().timestamp
@@ -469,7 +474,8 @@ class AirSimEnv(gym.Env):
         self.reward_in_step = []
         self.position_in_step
         self.total_reward = 0
-
+        self.old_dist_position = np.array([0,0,0])
+        self.dist_accumulate = 0
         self.allLogs['distance'] = [float(np.sqrt(np.power((self.goal[0]), 2) + np.power(self.goal[1], 2)))]
 
 
@@ -550,6 +556,13 @@ class AirSimEnv(gym.Env):
             print("Speed:"+str(self.speed))
             distance = np.sqrt(np.power((self.goal[0] - now[0]), 2) + np.power((self.goal[1] - now[1]), 2))
             
+            new_position = self.airgym.drone_pos()
+            self.dist_accumulate += np.sqrt((new_position[0]-self.old_dist_position[0])**2 + (new_position[1]-self.old_dist_position[1])**2)
+            self.old_dist_position = self.airgym.drone_pos()
+
+            print(self.dist_accumulate)
+
+
             if distance < settings.success_distance_to_goal:
                 self.success_count +=1
                 done = True
